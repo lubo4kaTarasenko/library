@@ -8,3 +8,8 @@
   <strong>Author:</strong>
   <%= @book.author %>
 </p>
+<% if admin_signed_in?%>
+  <%= link_to 'Edit', edit_book_path(@book) %> |
+<%end%>
+<%= link_to 'Back', books_path %>
+
