@@ -1,4 +1,10 @@
+<p>
+  <%if @book.cover.attached?%>
+    <img src="<%=(url_for(@book.cover))%>">
+  <%end%>
 
+
+</p>
 <p>
   <strong>Title:</strong>
   <%= @book.title %>
