@@ -2,8 +2,12 @@
   <%if @book.cover.attached?%>
     <img src="<%=(url_for(@book.cover))%>">
   <%end%>
+</p>
 
-
+<p>
+  <%if @book.content.attached?%>
+    <a href="<%=(url_for(@book.content))%>"> Open pdf</a>
+  <%end%>
 </p>
 <p>
   <strong>Title:</strong>
