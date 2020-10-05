@@ -51,6 +51,6 @@ class BooksController < ApplicationController
       image.resize "50x50"
     end
 
-    params.require(:book).permit(:title, :author, :cover, :content)
+    params.require(:book).permit(:title, :author, :cover, :content, :price)
   end
 end
