@@ -5,7 +5,7 @@
 </p>
 
 <p>
-  <%if @book.content.attached?%>
+  <%if @book.content.attached? && admin_signed_in?%>
     <a href="<%=(url_for(@book.content))%>"> Open pdf</a>
   <%end%>
 </p>
@@ -23,8 +23,18 @@
    <b class='btn btn-warning'>Price $ <%= @book.price.round(2) %></b>
   <%end%>
 </p>
-<%= link_to 'Get Free', payments_path(free: true, book_id: @book.id),  method: :post, :class => 'btn btn-secondary'%>
-<%= link_to 'Buy', payments_path(buy: true, book_id: @book.id), method: :post, :class => 'btn btn-success'%>
+<% if current_user%>
+  <% if !current_user.books.include?(@book) %>
+    <%= link_to 'Get Free', payments_path(free: true, book_id: @book.id),  method: :post, :class => 'btn btn-secondary'%>
+    <%= link_to 'Buy', payments_path(buy: true, book_id: @book.id), method: :post, :class => 'btn btn-success'%>
+  <%else%>
+    <b class='btn btn-primary'>You already bought this book.
+      <%if @book.content.attached?%>
+         <a href="<%=(url_for(@book.content))%>" class='btn btn-warning'> Open pdf</a>
+     <%end%>
+    </b>
+  <%end%>
+<%end%> 
 <br>
 <br>
 <% if admin_signed_in?%>
