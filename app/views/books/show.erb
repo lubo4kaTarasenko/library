@@ -25,7 +25,7 @@
 </p>
 <% if current_user%>
   <% if !current_user.books.include?(@book) %>
-    <%= link_to 'Get Free', payments_path(free: true, book_id: @book.id),  method: :post, :class => 'btn btn-secondary'%>
+    <%= link_to 'Get Free', promocode_payments_path(book_id: @book.id), :class => 'btn btn-secondary'%>
     <%= link_to 'Buy', payments_path(buy: true, book_id: @book.id), method: :post, :class => 'btn btn-success'%>
   <%else%>
     <b class='btn btn-primary'>You already bought this book.

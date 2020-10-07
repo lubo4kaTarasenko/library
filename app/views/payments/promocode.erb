@@ -1,0 +1,21 @@
+<h3>To get the free book, please enter your phone and we will send you a promocode</h3>
+
+<%= form_with(url: confirm_payments_path) do |form| %> 
+  <p>
+    <%= form.label :phone %><br>
+    <%= form.text_field :phone, value: current_user.phone %>
+  </p>
+  <p>
+    <%= form.submit("send promo") %>
+  </p>
+<% end %>
+
+<%= form_with(url: confirm_payments_path) do |form| %> 
+  <p>
+    <%= form.label :promocode %><br>
+    <%= form.text_field :promocode %>
+  </p>
+  <p>
+    <%= form.submit('confirm promo') %>
+  </p>
+<% end %>
