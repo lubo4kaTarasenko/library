@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     collection do
       get :promocode, as: :promocode
       post :confirm, as: :confirm
+      post :enter_promo, as: :enter_promo
     end
   end
 end

@@ -6,19 +6,35 @@ class PaymentsController < ApplicationController
   end
 
   def promocode
+    @book = Book.find(params[:book_id])
   end
 
-  def confirm
+  def enter_promo
+    @book = Book.find(params[:book_id]) 
     current_user.phone = params[:phone]
     current_user.save
-    promo = create_promocode
-    puts promo
+
+    @promo = Promocode.new(code: create_promocode)
+    @promo.save
+    puts @promo.code
 
     render :promocode
   end
 
+  def confirm
+    @book = Book.find(params[:book_id])  
+    entered_promocode = params[:promocode]
+    @promo = Promocode.where(code: entered_promocode).first
+    if(@promo)
+      render :true_promo
+    else
+      render :false_promo
+    end
+    #render :promocode
+  end
+
   private
   def create_promocode
-    promo =  rand(10**5..10**6-1)
+    rand(10**5..10**6-1)
   end
 end

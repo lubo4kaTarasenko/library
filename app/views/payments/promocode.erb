@@ -1,20 +1,23 @@
 <h3>To get the free book, please enter your phone and we will send you a promocode</h3>
 
-<%= form_with(url: confirm_payments_path) do |form| %> 
+<%= form_with(url: enter_promo_payments_path, local: true) do |form| %> 
   <p>
     <%= form.label :phone %><br>
     <%= form.text_field :phone, value: current_user.phone %>
+    <%=form.hidden_field :book_id, :value => @book.id %>
   </p>
   <p>
     <%= form.submit("send promo") %>
   </p>
 <% end %>
 
-<%= form_with(url: confirm_payments_path) do |form| %> 
+<%= form_with(url: confirm_payments_path, local: true) do |form| %> 
   <p>
     <%= form.label :promocode %><br>
     <%= form.text_field :promocode %>
   </p>
+    <%=form.hidden_field :book_id, :value => @book.id %>
+    
   <p>
     <%= form.submit('confirm promo') %>
   </p>
