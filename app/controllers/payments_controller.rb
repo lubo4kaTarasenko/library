@@ -28,6 +28,7 @@ class PaymentsController < ApplicationController
     if(@promo)
       @book = Book.find(params[:book_id])
       @book.users << current_user
+      current_user.update(free_promo_used: true)
       render "books/show"
     else
       render :false_promo
