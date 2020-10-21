@@ -26,7 +26,9 @@ class PaymentsController < ApplicationController
     entered_promocode = params[:promocode]
     @promo = Promocode.where(code: entered_promocode).first
     if(@promo)
-      render :true_promo
+      @book = Book.find(params[:book_id])
+      @book.users << current_user
+      render "books/show"
     else
       render :false_promo
     end
