@@ -8,4 +8,10 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  after_create :send_greating
+
+  def send_greating
+    UserMailer.with(user: self).welcome_email.deliver_now
+  end
 end
